@@ -1,0 +1,24 @@
+name: Daily Clock Out
+
+on:
+  schedule:
+    - cron: '50 18 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: 'npm'
+    - name: Install Dependencies
+      run: npm install
+    - name: Test
+      run: ([ -z $KTP_ID ] || [ -z $KTP_PASSWORD ] || npm run clock_out)
+      env:
+        KTP_ID: ${{ secrets.KTP_ID }}
+        KTP_PASSWORD: ${{ secrets.KTP_PASSWORD }}
