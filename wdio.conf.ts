@@ -60,10 +60,16 @@ export const config: Options.Testrunner = {
     //
     capabilities: [
         // {
-        //     browserName: 'chrome'
+        //     browserName: 'chrome',   // or 'chromium'
+        //     'goog:chromeOptions': {
+        //         args: ['headless', 'disable-gpu']
+        //     }
         // }, 
         {
-            browserName: 'firefox'
+            browserName: 'firefox',
+            'moz:firefoxOptions': {
+                args: ['-headless']
+            }
         }
     ],
 
