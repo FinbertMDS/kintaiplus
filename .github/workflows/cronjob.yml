@@ -1,14 +1,14 @@
-name: Github Action with a cronjob trigger
+# .github/workflows/keepalive.yml
+name: Keep Alive
+
 on:
   schedule:
-    - cron: "0 0 * * *"
-permissions:
-  actions: write
+    - cron: '0 0 * * *' # chạy mỗi ngày 0:00 UTC
+  workflow_dispatch:
 
 jobs:
-  cronjob-based-github-action:
-    name: Cronjob based github action
+  keep-alive:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: gautamkrishnar/keepalive-workflow@v2
+      - name: Keep repo alive
+        run: echo "Still alive at $(date)"
